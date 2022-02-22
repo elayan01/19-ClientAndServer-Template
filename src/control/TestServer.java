@@ -18,17 +18,22 @@ public class TestServer extends Server{
         clients = new List<>();
         this.panelHandler = panel;
         //TODO 02 Falls der Server offen ist, werden die Knöpfe im Panel angeschaltet: buttonsSwitch aufrufen. Ansonsten erfolgt eine Ausgabe, dass es ein Problem beim Starten gab.
+        if (isOpen()){
+            panelHandler.buttonSwitch();
+        }
     }
 
     @Override
     public void processNewConnection(String pClientIP, int pClientPort) {
         clients.append(pClientIP+":"+pClientPort); //TODO 03a Erläutern Sie, was hier passiert.
         panelHandler.displayNewConnection(pClientIP,pClientPort);
+        //Die Ip und der Port des Clients werden als Text gespeichert.
     }
 
     @Override
     public void processMessage(String pClientIP, int pClientPort, String pMessage) {
         panelHandler.showProcessMessageContent(pClientIP,pClientPort,pMessage); //TODO 03b Erläutern Sie, was hier passiert.
+
     }
 
     @Override
@@ -45,6 +50,7 @@ public class TestServer extends Server{
         }
 
         panelHandler.displayClosingConnection(pClientIP, pClientPort);
+        //Der Client mit der Gesuchten Ip wird aus der Liste gelöscht und die Verbindung getrennt.
     }
 
     /**
@@ -63,6 +69,17 @@ public class TestServer extends Server{
      */
     public String[] getClients(){
         //TODO 04 Ein Hoch auf die Standard-Listen/Array-Aufgaben! Bitte umsetzen.
-        return new String[]{"0000:0000"};
+        int count=0;
+        clients.toFirst();
+        while (clients.hasAccess()){
+            count++;
+            clients.next();
+        }
+        String[] array=new String[count];
+        clients.toFirst();
+        for (int i=0;i<array.length;i++){
+            array[i]=clients.getContent();
+        }
+        return array;
     }
 }
