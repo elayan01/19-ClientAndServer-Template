@@ -17,7 +17,7 @@ public class TestClient extends Client{
         this.panelHandler = panelHandler;
 
         //TODO 05 Falls eine Verbindung vorhanden ist, müssen die Knöpfe im panelHandler aktiviert werden mit der Methode switchButtons. Ansonsten muss eine Ausgabe erfolgen, die dem Nutzer mitteilt, dass es ein Verbindungsproblem gab und er bitte IP und Port prüft.
-        if (isConnected()){
+        if (this.isConnected()){
             panelHandler.switchButtons();
         }else {
             panelHandler.textReceived("Es ist ein Verbindungsfehler aufgetreten. Überprüfe IP und Port");
@@ -33,7 +33,7 @@ public class TestClient extends Client{
     @Override
     public void close(){
         //TODO 08 Die Verbindung muss geschlossen und die Knöpfe im Panel abgeschaltet werden.
-        close();
+        super.close();
         panelHandler.switchButtons();
     }
 }

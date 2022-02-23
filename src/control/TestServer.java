@@ -18,8 +18,10 @@ public class TestServer extends Server{
         clients = new List<>();
         this.panelHandler = panel;
         //TODO 02 Falls der Server offen ist, werden die Knöpfe im Panel angeschaltet: buttonsSwitch aufrufen. Ansonsten erfolgt eine Ausgabe, dass es ein Problem beim Starten gab.
-        if (isOpen()){
+        if (this.isOpen()){
             panelHandler.buttonSwitch();
+        }else{
+            panelHandler.showProcessMessageContent("",0,"ERROR");
         }
     }
 
