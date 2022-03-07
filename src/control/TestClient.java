@@ -2,6 +2,8 @@ package control;
 
 import view.Client.InteractionPanelHandlerClient;
 
+import java.time.LocalDateTime;
+
 /** Aus Gründen der Vereinfachung gibt es eine "Verzahnung" (gegenseitige Kennt-Beziehung --> Assoziation) zwischen TestClient und InteractionsPanelHandlerClient.
  *  Im fertigen Programm existiert jeweils ein Objekt. Beide Objekte kennen sich gegenseitig.
  * Created by AOS on 18.09.2017.
@@ -27,7 +29,12 @@ public class TestClient extends Client{
     @Override
     public void processMessage(String pMessage) {
         //TODO 07 Die empfangene Nachricht wird einfach in der Client-Oberfläche ausgegeben. Eine eventuelle Auswertung kann danach hier in der Methode intern stattfinden.
-        panelHandler.textReceived(pMessage);
+        String[] s=pMessage.split("§§");
+        if (s[0].equals("ECHO")){
+           panelHandler.textReceived(s[1]);
+        }
+
+
     }
 
     @Override

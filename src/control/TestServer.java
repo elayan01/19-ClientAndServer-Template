@@ -3,6 +3,9 @@ package control;
 import model.List;
 import view.Server.InteractionPanelHandlerServer;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**Aus Gründen der Vereinfachung gibt es eine "Verzahnung" (gegenseitige Kennt-Beziehung --> Assoziation) zwischen TestServer und InteractionsPanelHandlerServer.
  *  Im fertigen Programm existiert jeweils ein Objekt. Beide Objekte kennen sich gegenseitig.
  * Created by AOS on 18.09.2017.
@@ -35,6 +38,13 @@ public class TestServer extends Server{
     @Override
     public void processMessage(String pClientIP, int pClientPort, String pMessage) {
         panelHandler.showProcessMessageContent(pClientIP,pClientPort,pMessage); //TODO 03b Erläutern Sie, was hier passiert.
+        String[] s=pMessage.split("§§");
+        if (s.length==2){
+            if (s[0].equals("NACHRICHT")){
+                send(pClientIP,pClientPort,"ECHO§§"+ LocalDateTime.now()+":"+pClientIP+":"+s[1]);
+            }
+        }
+
 
     }
 
@@ -81,6 +91,7 @@ public class TestServer extends Server{
         clients.toFirst();
         for (int i=0;i<array.length;i++){
             array[i]=clients.getContent();
+            clients.next();
         }
         return array;
     }
