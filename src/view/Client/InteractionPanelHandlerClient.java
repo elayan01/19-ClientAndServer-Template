@@ -19,6 +19,7 @@ public class InteractionPanelHandlerClient {
     private JTextField message;
     private JButton buttonConnect, buttonDisconnect, buttonSend;
     private JTextArea output;
+    private JButton nameButton;
 
     public InteractionPanelHandlerClient() {
         createButtons();
@@ -32,6 +33,12 @@ public class InteractionPanelHandlerClient {
         addToOutput("Die Nachricht kann an den Server gesendet werden, der Server kann mit einer beliebingen Antwort antworten.");
         addToOutput("-----------------------------------------------------------------------------------");
 
+        nameButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                send("NAME§§");
+            }
+        });
     }
 
     private void createButtons(){
@@ -42,7 +49,7 @@ public class InteractionPanelHandlerClient {
         buttonConnect.setEnabled(true);
         buttonDisconnect.setEnabled(false);
         buttonSend.setEnabled(false);
-
+        nameButton.setEnabled(false);
         buttonConnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,7 +66,7 @@ public class InteractionPanelHandlerClient {
         buttonSend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               send();
+               send("NACHRICH§§");
             }
         });
     }
@@ -97,9 +104,9 @@ public class InteractionPanelHandlerClient {
 	/**
      * An den Server wird die Nachricht geschickt, die sich im TextField message befindet. Diese wird über das TestClient-Objekt client gesendet.
      */
-    private void send(){
+    private void send(String a){
         //TODO 06 Umsetzen!
-        client.send("NACHRICHT§§"+message.getText());
+        client.send(a+message.getText());
     }
 	
 	/**
@@ -110,6 +117,7 @@ public class InteractionPanelHandlerClient {
         buttonConnect.setEnabled(!buttonConnect.isEnabled());
         buttonDisconnect.setEnabled(!buttonDisconnect.isEnabled());
         buttonSend.setEnabled(!buttonSend.isEnabled());
+        nameButton.setEnabled(!nameButton.isEnabled());
     }
 
 	/**

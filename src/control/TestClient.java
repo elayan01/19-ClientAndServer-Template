@@ -30,9 +30,20 @@ public class TestClient extends Client{
     public void processMessage(String pMessage) {
         //TODO 07 Die empfangene Nachricht wird einfach in der Client-Oberfläche ausgegeben. Eine eventuelle Auswertung kann danach hier in der Methode intern stattfinden.
         String[] s=pMessage.split("§§");
-        if (s[0].equals("ECHO")){
-           panelHandler.textReceived(s[1]);
+        if (s[0].equals("GIBNAME")){
+           panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("VERBUNDEN")){
+            panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("ANALLE")){
+            panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("NEURERNAME")){
+            panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("NICHTVERBUNDEN")){
+            panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("NACHRICHT")){
+            panelHandler.textReceived(pMessage);
         }
+
 
 
     }
