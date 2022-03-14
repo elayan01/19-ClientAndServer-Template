@@ -20,6 +20,7 @@ public class InteractionPanelHandlerClient {
     private JButton buttonConnect, buttonDisconnect, buttonSend;
     private JTextArea output;
     private JButton nameButton;
+    private JButton flüsterButton;
 
     public InteractionPanelHandlerClient() {
         createButtons();
@@ -36,7 +37,13 @@ public class InteractionPanelHandlerClient {
         nameButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                send("NAME§§");
+                send("NAME");
+            }
+        });
+        flüsterButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                send("FLUESTER");
             }
         });
     }
@@ -50,6 +57,7 @@ public class InteractionPanelHandlerClient {
         buttonDisconnect.setEnabled(false);
         buttonSend.setEnabled(false);
         nameButton.setEnabled(false);
+        flüsterButton.setEnabled(false);
         buttonConnect.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,7 +74,7 @@ public class InteractionPanelHandlerClient {
         buttonSend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               send("NACHRICH§§");
+               send("NACHRICHT");
             }
         });
     }
@@ -106,7 +114,7 @@ public class InteractionPanelHandlerClient {
      */
     private void send(String a){
         //TODO 06 Umsetzen!
-        client.send(a+message.getText());
+        client.send(a+"§§"+message.getText());
     }
 	
 	/**
@@ -118,6 +126,7 @@ public class InteractionPanelHandlerClient {
         buttonDisconnect.setEnabled(!buttonDisconnect.isEnabled());
         buttonSend.setEnabled(!buttonSend.isEnabled());
         nameButton.setEnabled(!nameButton.isEnabled());
+        flüsterButton.setEnabled(!buttonConnect.isEnabled());
     }
 
 	/**

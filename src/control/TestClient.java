@@ -42,6 +42,12 @@ public class TestClient extends Client{
             panelHandler.textReceived(pMessage);
         }else if (s[0].equals("NACHRICHT")){
             panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("ALLECLIENTS")){
+            panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("ANEINEN")){
+            panelHandler.textReceived(pMessage);
+        }else if (s[0].equals("SCHONANGEMELDET")){
+            panelHandler.textReceived(pMessage);
         }
 
 
